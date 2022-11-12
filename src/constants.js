@@ -1,0 +1,1 @@
+export const BASE_URL = `https://api.unsplash.com/photos?client_id=SJNYdOWwRox7p_8deXVC4SlgX1ROKLVph5zkJzPIjsw`

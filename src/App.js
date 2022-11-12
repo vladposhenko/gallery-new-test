@@ -1,57 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
+import ImageList from "./features/ImageList";
+import {fetchImages} from "./app/app-reducer";
+import { useDispatch, useSelector } from "react-redux";
+import ImagePage from "./features/ImagePage";
 
 function App() {
+  const dispatch = useDispatch()
+  const images = useSelector(state => state.images)
+  useEffect( () => {
+    dispatch(fetchImages())
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+          <div className="App">
+              <BrowserRouter>
+                  <Routes>
+                      <Route path="" element={<ImageList images={images} />} />
+                      <Route path="images/:id" element={<ImagePage images={images} />} />
+                  </Routes>
+              </BrowserRouter>
+          </div>
   );
 }
 

@@ -1,0 +1,12 @@
+.image-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:20px;
+}
+
+.image-block__user {
+    width:50px;
+    border-radius: 50%;
+    padding-top: 5px;
+}
